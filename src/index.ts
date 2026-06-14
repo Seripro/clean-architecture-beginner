@@ -7,9 +7,22 @@ app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
-// 追加
 app.get("/ping", (c) => {
   return c.text("pong");
+});
+
+app.get("/active", (c) => {
+  // まだUseCaseを作っていないので、いったん「理想のゴール」のJSONを固定値で返しておく
+  return c.json([
+    {
+      userId: 1,
+      name: "渡辺",
+    },
+    {
+      userId: 2,
+      name: "山田",
+    },
+  ]);
 });
 
 serve(
