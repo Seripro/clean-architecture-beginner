@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.19.14",
-    "hono": "^4.12.25"
+    "hono": "^4.12.25",
+    "vitest": "^4.1.8"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
