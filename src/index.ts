@@ -1,5 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { activeUserUseCase } from "./container.js";
 
 const app = new Hono();
 
@@ -11,18 +12,14 @@ app.get("/ping", (c) => {
   return c.text("pong");
 });
 
-app.get("/active", (c) => {
-  // まだUseCaseを作っていないので、いったん「理想のゴール」のJSONを固定値で返しておく
-  return c.json([
-    {
-      userId: 1,
-      name: "渡辺",
-    },
-    {
-      userId: 2,
-      name: "山田",
-    },
-  ]);
+app.get("/active", async (c) => {
+  const activeUsers = await activeUserUseCase.execute();
+  return c.json(
+    activeUsers.map((user) => ({
+      userId: user.id,
+      name: user.name,
+    })),
+  );
 });
 
 serve(
