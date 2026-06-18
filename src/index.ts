@@ -18,6 +18,7 @@ app.get("/active", async (c) => {
     activeUsers.map((user) => ({
       userId: user.id,
       name: user.name,
+      score: user.score,
     })),
   );
 });
